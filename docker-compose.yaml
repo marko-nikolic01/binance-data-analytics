@@ -1,11 +1,21 @@
 version: '2'
 
 services:
-  nifi:
+  binance-connector:
     build:
       context: .
-      dockerfile: ./nifi/Dockerfile
+      dockerfile: ./binance_connector/Dockerfile
+    container_name: binance-connector
+    volumes:
+      - ./data:/data
+    networks:
+      - shared_network
+
+  nifi:
+    image: apache/nifi:1.15.3
     container_name: nifi
+    depends_on:
+      - binance-connector
     ports:
       - "8443:8443"
     volumes:
@@ -31,6 +41,33 @@ services:
       - nifi_registry:/opt/nifi-registry/nifi-registry-current/
     networks:
       - shared_network
+    
+  zookeeper:
+    image: zookeeper:3.8
+    container_name: zookeeper
+    restart: always
+    env_file:
+      - ./kafka/zookeeper.env
+    ports:
+      - "2181:2181"
+    networks:
+      - shared_network
+
+
+  kafka:
+    image: wurstmeister/kafka:latest
+    container_name: kafka
+    env_file:
+      - ./kafka/kafka.env
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    depends_on:
+      - zookeeper
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    networks:
+      - shared_network
 
 volumes:
   nifi_conf: {}
@@ -40,6 +77,8 @@ volumes:
   nifi_provenance_repository: {}
   nifi_state: {}
   nifi_registry: {}
+  zookeeper_data: {}
+  kafka_data: {}
 
 networks:
   shared_network:
