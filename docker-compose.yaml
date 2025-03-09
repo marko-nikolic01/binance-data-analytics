@@ -53,9 +53,8 @@ services:
     networks:
       - shared_network
 
-
   kafka:
-    image: wurstmeister/kafka:latest
+    image: wurstmeister/kafka:2.13-2.8.1
     container_name: kafka
     env_file:
       - ./kafka/kafka.env
@@ -66,6 +65,16 @@ services:
       - zookeeper
     volumes:
       - kafka_data:/var/lib/kafka/data
+    networks:
+      - shared_network
+
+  kafka-streams:
+    build:
+      context: ./kafka/kafka_streams
+      dockerfile: Dockerfile
+    container_name: kafka-streams
+    depends_on:
+      - kafka
     networks:
       - shared_network
 
