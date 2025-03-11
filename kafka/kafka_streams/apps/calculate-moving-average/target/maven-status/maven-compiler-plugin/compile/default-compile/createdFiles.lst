@@ -1,0 +1,6 @@
+com/example/SumAndCountSerde$SumAndCountSerializer.class
+com/example/CalculateMovingAverage.class
+com/example/SumAndCount.class
+com/example/SumAndCountSerde$SumAndCountDeserializer.class
+com/example/SumAndCountSerde.class
+com/example/MongoDBWriter.class

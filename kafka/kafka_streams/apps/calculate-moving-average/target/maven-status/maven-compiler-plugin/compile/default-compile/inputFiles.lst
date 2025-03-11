@@ -1,0 +1,4 @@
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-moving-average/src/main/java/com/example/CalculateMovingAverage.java
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-moving-average/src/main/java/com/example/MongoDBWriter.java
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-moving-average/src/main/java/com/example/SumAndCount.java
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-moving-average/src/main/java/com/example/SumAndCountSerde.java
