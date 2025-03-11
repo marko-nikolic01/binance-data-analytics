@@ -2,7 +2,6 @@ version: '2'
 
 services:
 
-  # Binance Data Connector
   binance-connector:
     build:
       context: .
@@ -13,7 +12,6 @@ services:
     networks:
       - shared_network
 
-  # Apache NiFi
   nifi:
     image: apache/nifi:1.15.3
     container_name: nifi
@@ -35,7 +33,6 @@ services:
     networks:
       - shared_network
 
-  # Apache NiFi Registry
   nifi-registry:
     image: apache/nifi-registry:1.15.3
     container_name: nifi-registry
@@ -46,7 +43,6 @@ services:
     networks:
       - shared_network
 
-  # Apache Zookeeper (Required for Kafka)
   zookeeper:
     image: zookeeper:3.8
     container_name: zookeeper
@@ -58,7 +54,6 @@ services:
     networks:
       - shared_network
 
-  # Apache Kafka
   kafka:
     image: wurstmeister/kafka:2.13-2.8.1
     container_name: kafka
@@ -74,7 +69,6 @@ services:
     networks:
       - shared_network
 
-  # Kafka Streams
   kafka-streams:
     build:
       context: ./kafka/kafka_streams
@@ -85,7 +79,6 @@ services:
     networks:
       - shared_network
 
-  # MongoDB
   mongodb:
     image: mongo:8.0
     container_name: mongodb
@@ -98,7 +91,6 @@ services:
     networks:
       - shared_network
 
-  # MongoDB Admin UI
   mongo-express:
     image: mongo-express:1.0.2-20-alpine3.19
     container_name: mongo-express
@@ -111,7 +103,6 @@ services:
     networks:
       - shared_network
 
-  # Metabase (BI & Visualization)
   metabase:
     image: metabase/metabase:v0.53.x
     container_name: metabase
