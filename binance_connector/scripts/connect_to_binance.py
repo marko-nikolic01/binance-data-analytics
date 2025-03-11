@@ -16,7 +16,19 @@ def on_open(ws):
 if __name__ == "__main__":
     streams = [
         "btcusdt@kline_1m",
-        "ethusdt@kline_1m"
+        "ethusdt@kline_1m",
+        "bnbusdt@kline_1m",
+        "xrpusdt@kline_1m",
+        "adausdt@kline_1m",
+        "solusdt@kline_1m",
+        "dotusdt@kline_1m",
+        "maticusdt@kline_1m",
+        "ltcusdt@kline_1m",
+        "linkusdt@kline_1m",
+        "dogeusdt@kline_1m",
+        "avaxusdt@kline_1m",
+        "shibusdt@kline_1m",
+        "uniusdt@kline_1m"
     ]
 
     url = "wss://stream.binance.com:9443/stream?streams=" + "/".join(streams)
