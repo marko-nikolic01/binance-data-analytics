@@ -28,6 +28,7 @@ public class CalculateMovingAverage {
         // Define a 10-second sliding window
         final Duration WINDOW_SIZE = Duration.ofSeconds(10);
 
+        // Calculate average prices over 10-second widnows grouped by symbol
         KTable<Windowed<String>, SumAndCount> movingAverageTable = inputStream
             .map((key, value) -> {
                 ObjectMapper objectMapper = new ObjectMapper();

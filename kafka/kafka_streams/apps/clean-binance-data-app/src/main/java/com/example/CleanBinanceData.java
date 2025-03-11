@@ -19,6 +19,7 @@ import java.util.Properties;
 
 public class CleanBinanceData {
     public static void main(String[] args) {
+        // Kafka Streams Configuration
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "clean-binance-data-app");
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "kafka:9092");
