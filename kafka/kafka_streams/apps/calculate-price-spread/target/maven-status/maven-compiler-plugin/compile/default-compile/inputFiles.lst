@@ -1,0 +1,3 @@
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-price-spread/src/main/java/com/example/CalculatePriceSpread.java
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-price-spread/src/main/java/com/example/MongoDBWriter.java
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-price-spread/src/main/java/com/example/PriceSpread.java

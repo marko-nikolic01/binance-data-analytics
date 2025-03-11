@@ -1,0 +1,134 @@
+version: '2'
+
+services:
+
+  binance-connector:
+    build:
+      context: .
+      dockerfile: ./binance_connector/Dockerfile
+    container_name: binance-connector
+    volumes:
+      - ./data:/data
+    networks:
+      - shared_network
+
+  nifi:
+    image: apache/nifi:1.15.3
+    container_name: nifi
+    depends_on:
+      - binance-connector
+    ports:
+      - "8443:8443"
+    volumes:
+      - ./data/:/data
+      - ./nifi/scripts/:/scripts
+      - nifi_conf:/opt/nifi/nifi-current/conf
+      - nifi_database_repository:/opt/nifi/nifi-current/database_repository
+      - nifi_flowfile_repository:/opt/nifi/nifi-current/flowfile_repository
+      - nifi_content_repository:/opt/nifi/nifi-current/content_repository
+      - nifi_provenance_repository:/opt/nifi/nifi-current/provenance_repository
+      - nifi_state:/opt/nifi/nifi-current/state
+    env_file:
+      - ./nifi/nifi.env
+    networks:
+      - shared_network
+
+  nifi-registry:
+    image: apache/nifi-registry:1.15.3
+    container_name: nifi-registry
+    ports:
+      - "18080:18080"
+    volumes:
+      - nifi_registry:/opt/nifi-registry/nifi-registry-current/
+    networks:
+      - shared_network
+
+  zookeeper:
+    image: zookeeper:3.8
+    container_name: zookeeper
+    restart: always
+    env_file:
+      - ./kafka/zookeeper.env
+    ports:
+      - "2181:2181"
+    networks:
+      - shared_network
+
+  kafka:
+    image: wurstmeister/kafka:2.13-2.8.1
+    container_name: kafka
+    env_file:
+      - ./kafka/kafka.env
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    depends_on:
+      - zookeeper
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    networks:
+      - shared_network
+
+  kafka-streams:
+    build:
+      context: ./kafka/kafka_streams
+      dockerfile: Dockerfile
+    container_name: kafka-streams
+    depends_on:
+      - kafka
+    networks:
+      - shared_network
+
+  mongodb:
+    image: mongo:8.0
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongodb/scripts:/docker-entrypoint-initdb.d
+      - mongodb_data:/data/db
+    networks:
+      - shared_network
+
+  mongo-express:
+    image: mongo-express:1.0.2-20-alpine3.19
+    container_name: mongo-express
+    depends_on:
+      - mongodb
+    ports:
+      - "8083:8081"
+    env_file:
+      - ./mongodb/mongodb.env
+    networks:
+      - shared_network
+
+  metabase:
+    image: metabase/metabase:v0.53.x
+    container_name: metabase
+    depends_on:
+      - mongodb
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./metabase/metabase_data/:/metabase-data
+    env_file:
+      - ./metabase/metabase.env
+    networks:
+      - shared_network
+
+volumes:
+  nifi_conf: {}
+  nifi_database_repository: {}
+  nifi_flowfile_repository: {}
+  nifi_content_repository: {}
+  nifi_provenance_repository: {}
+  nifi_state: {}
+  nifi_registry: {}
+  zookeeper_data: {}
+  kafka_data: {}
+  mongodb_data: {}
+
+networks:
+  shared_network:
+    driver: bridge

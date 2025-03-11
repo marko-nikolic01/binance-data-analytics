@@ -1,0 +1,7 @@
+com/example/App.class
+com/example/TradingVolumeSerde$TradingVolumeSerializer.class
+com/example/TradingVolume.class
+com/example/TradingVolumeSerde$TradingVolumeDeserializer.class
+com/example/CalculateTradingVolumeByHourOfDay.class
+com/example/TradingVolumeSerde.class
+com/example/MongoDBWriter.class

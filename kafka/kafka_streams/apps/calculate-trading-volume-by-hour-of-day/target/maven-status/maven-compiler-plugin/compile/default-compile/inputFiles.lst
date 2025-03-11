@@ -1,0 +1,5 @@
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-trading-volume-by-hour-of-day/src/main/java/com/example/App.java
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-trading-volume-by-hour-of-day/src/main/java/com/example/CalculateTradingVolumeByHourOfDay.java
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-trading-volume-by-hour-of-day/src/main/java/com/example/MongoDBWriter.java
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-trading-volume-by-hour-of-day/src/main/java/com/example/TradingVolume.java
+/home/marko/Documents/GitHub/binance_data_analytics/kafka/kafka_streams/apps/calculate-trading-volume-by-hour-of-day/src/main/java/com/example/TradingVolumeSerde.java
