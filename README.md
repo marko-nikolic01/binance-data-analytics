@@ -134,6 +134,10 @@ Data is processed using **Apache Kafka** and **Apache Kafka Streams** in two mai
   <img src="https://github.com/user-attachments/assets/7ef19067-ab8b-4ec8-9cb0-0a52751a45d1" alt="Apache_Kafka_logo svg" />
 </p>
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/baec354b-a1ae-4cfc-9647-9d414ea08a96" alt="Java_programming_language_logo svg" />
+</p>
+
 #### Phase 1: Data Cleaning (Raw to Transformation) – **Bronze to Silver**  
 In the first phase, the data in the **Raw Data Zone (Bronze)** is cleaned and transformed as it moves into the **Transformation Zone (Silver)**. The cleaning process is handled by the **`clean_binance_data_app`**, which consumes data from Kafka topics, performs necessary data cleansing, and then pushes the cleaned data to the **Transformation Zone (Silver)** in Kafka.
 
@@ -208,6 +212,10 @@ The MongoDB setup consists of the following containers:
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/7d740b5e-84a3-4151-9720-a2d9313cd2fa" alt="Apache_ZooKeeper_logo svg svg" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/baec354b-a1ae-4cfc-9647-9d414ea08a96" alt="Java_programming_language_logo svg" />
 </p>
 
 The Kafka setup consists of the following containers:
